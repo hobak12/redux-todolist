@@ -32,20 +32,7 @@ export const deleteTodo = (newList) => {
 };
 
 // 초기값 설정
-const initialState = [
-  {
-    id: uuid(), // id는 모두 고유값이어야 합니다.
-    title: "리액트 강의보기",
-    context: "챕터 1부터 챕터 12까지 학습",
-    isDone: false,
-  },
-  {
-    id: uuid(), // id는 모두 고유값이어야 합니다.
-    title: "점심 먹기",
-    context: "점심 뭐먹지..?",
-    isDone: true,
-  },
-];
+const initialState = [];
 
 //투두 리스트 state 바꿔주는 리듀서
 const todoList = (state = initialState, action) => {
