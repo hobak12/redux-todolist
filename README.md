@@ -1,4 +1,4 @@
-vercal 주소(https://redux-todolist-green.vercel.app)
+vercel 주소(https://redux-todolist-green.vercel.app)
 
 # Getting Started with Create React App
 
