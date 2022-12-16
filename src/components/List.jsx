@@ -6,20 +6,15 @@ import { Link } from "react-router-dom";
 
 const List = ({ name }) => {
   const isWorking = name === "working" ? false : true;
-
   const todoList = useSelector((state) => state.todoList);
   const dispatch = useDispatch();
 
   const onClickToggleHandler = (id) => {
-    const newTodoList = todoList.map((item) =>
-      id === item.id ? { ...item, isDone: !item.isDone } : item
-    );
-    dispatch(toggleStatus(newTodoList));
+    dispatch(toggleStatus(id));
   };
 
   const onClickDeleteHandler = (id) => {
-    const newTodoList = todoList.filter((item) => id !== item.id);
-    dispatch(deleteTodo(newTodoList));
+    dispatch(deleteTodo(id));
   };
 
   return (

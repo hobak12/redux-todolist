@@ -17,17 +17,17 @@ export const addTodo = (title, context) => {
 };
 
 //toggle 액션 크리에이터
-export const toggleStatus = (newList) => {
+export const toggleStatus = (id) => {
   return {
     type: TOGGLE_STATUS,
-    newList,
+    id,
   };
 };
 
-export const deleteTodo = (newList) => {
+export const deleteTodo = (id) => {
   return {
     type: DELETE_TODO,
-    newList,
+    id,
   };
 };
 
@@ -36,9 +36,10 @@ const initialState = [];
 
 //투두 리스트 state 바꿔주는 리듀서
 const todoList = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case ADD_TODO:
-      return (state = [
+      return [
         ...state,
         {
           id: uuid(),
@@ -46,11 +47,13 @@ const todoList = (state = initialState, action) => {
           context: action.context,
           isDone: false,
         },
-      ]);
+      ];
     case TOGGLE_STATUS:
-      return (state = action.newList);
+      return state.map((item) =>
+        item.id === action.id ? { ...item, isDone: !item.isDone } : item
+      );
     case DELETE_TODO:
-      return (state = action.newList);
+      return state.filter((item) => item.id !== action.id);
     default:
       return state;
   }
