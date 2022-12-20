@@ -3,6 +3,11 @@ import React from "react";
 import styled from "styled-components";
 import { toggleStatus, deleteTodo } from "../redux/modules/todolist";
 import { Link } from "react-router-dom";
+/**
+ * 작성자 : 김선형
+ * 기능 :투두 리스트 불러온다
+ * 마지막 수정: 2022.12.16
+ */
 
 const List = ({ name }) => {
   const isWorking = name === "working" ? false : true;
@@ -14,7 +19,9 @@ const List = ({ name }) => {
   };
 
   const onClickDeleteHandler = (id) => {
-    dispatch(deleteTodo(id));
+    if (window.confirm("정말 삭제하시겠어요?")) {
+      dispatch(deleteTodo(id));
+    }
   };
 
   return (
@@ -26,7 +33,7 @@ const List = ({ name }) => {
           .map((item) => {
             return (
               <StTodoContainer key={item.id}>
-                <StLink to={`/detail/${item.id}`}>
+                <StLink to={`/${item.id}`}>
                   <div> 상세보기</div>
                 </StLink>
                 <h2>{item.title}</h2>
